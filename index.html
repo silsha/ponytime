@@ -18,10 +18,24 @@
         <p>Finde das nächste Ponytime in deiner Nähe!</p>
     </header>
 
+    <div id="search">
+        <form accept-charset="UTF-8" action="/bronielocator" method="get">
+            <input class="search" id="term" name="term" type="text" value="" style="color: rgb(255, 255, 255); ">
+            <input id="distance" name="distance" type="hidden" value="0.5">
+        </form>
+        <div>
+            <span class="left-label">5km</span>
+            <span class="middle-label">25km</span>
+            <span class="right-label">50km</span>
+            <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 22.22222222222222%; "></a>
+        </div>
+    </div>
+
     <div id="map">
     </div>
 
     <div id="footer">
+        <p>Bla bla bla</p>
     </div>
 </div>
 <script type="text/javascript" src="js/ponytime.js"></script>
