@@ -10,6 +10,7 @@ html, body {
 }
 
 body {
+	background-image:url('../static/bg.jpg');
     background-color: #222;
 }
 
@@ -17,12 +18,24 @@ h1, h2, h3, h4 {
     font-family: CelestiaRedux, Verdana, sans-serif;
 }
 
+header{
+	background-image: url('../static/rainbow.png');
+	background-repeat: no-repeat;
+	background-position: right;
+	
+}
+
 header h1 {
+	font-size: 110px;
+	margin-top: 0em;
+	color: #375562;
 }
 
 #main {
     width: 750px;
     margin: 0 auto;
+	font-family: "Helvetica", sans-serif;
+	color: #375562;
 }
 
 #map {
