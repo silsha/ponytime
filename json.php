@@ -11,14 +11,5 @@ while($row = mysql_fetch_object($qry))
 	$json[$row->id]['lng']	= $row->log;
 	$json[$row->id]['url']	= $row->url;
 }
-
-
-$jsonen = json_encode($json);
-
-echo $jsonen;
-
-//var_dump ($jsonen);
-
-//var_dump(json_decode($jsonen, true));
-
+print json_encode($json);
 ?>
