@@ -3,11 +3,20 @@ var bronies = (function() {
     var map;
 
     var getViewerLocation = function() {
+    var getViewerLocation = function(maps) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                map.panTo(pos);
-			    map.setZoom(13);
+                maps.panTo(pos);
+			    maps.setZoom(11);
+			    
+			    var dot = "static/dot.png";
+			    var marker = new google.maps.Marker({
+			        position: pos,
+			        map: maps,
+			        title: "Deine Position",
+			        icon: dot
+			    });
             }, function() {
                 map.panTo(new google.maps.LatLng(51.1, 10.5));
             });
@@ -40,6 +49,7 @@ var bronies = (function() {
         });
 
         getViewerLocation();
+        getViewerLocation(map);
     };
 
     return self;
