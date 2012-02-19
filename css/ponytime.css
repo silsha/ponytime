@@ -6,11 +6,11 @@
 html, body {
     height: 100%;
     margin: 0;
-    color: #888;
+    color: #34afc6;
 }
 
 body {
-	background-image:url('../static/bg.jpg');
+	background-image:url('../static/bg2.png');
     background-color: #222;
 }
 
@@ -21,21 +21,32 @@ h1, h2, h3, h4 {
 header{
 	background-image: url('../static/rainbow.png');
 	background-repeat: no-repeat;
-	background-position: right;
+	background-position: left;
+	border-bottom: 1px solid #2b7987;
+	margin-bottom: 10px;
 
 }
 
 header h1 {
 	font-size: 110px;
 	margin: 0;
-	color: #375562;
+	color: #34afc6;
+	margin-left: 160px;
+	margin-bottom: 20px;
+}
+
+header p{
+    font-family: CelestiaRedux, Verdana, sans-serif;
+    color: #34afc6;
+    margin-left: 16.7em;
+    margin-top: -1.4em;
 }
 
 #main {
     width: 750px;
     margin: 0 auto;
 	font-family: "Helvetica", sans-serif;
-	color: #375562;
+	color: #34afc6;
 }
 
 #map {
