@@ -1,5 +1,6 @@
 var bronies = (function() {
     var self = this;
+    var map;
 
     var getViewerLocation = function() {
         if (navigator.geolocation) {
@@ -15,7 +16,7 @@ var bronies = (function() {
 
     self.init = function() {
         var mapCenter = new google.maps.LatLng(0, 0);
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
             zoom: 6,
             center: new google.maps.LatLng(51.1, 10.5),
             mapTypeId: google.maps.MapTypeId.ROADMAP
