@@ -1,2 +1,3 @@
 RewriteEngine On
 RewriteRule ^nodejs/(.*) http://localhost:7346/$1 [P]
+RewriteRule ^bronielocator/ /bronielocator.php [P]

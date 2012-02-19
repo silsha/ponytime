@@ -45,7 +45,7 @@ var bronies = (function() {
 
         $.ajax({
     	    type: "GET",
-    		url: "/bronielocator.php",
+    		url: "/bronielocator/",
             data: {}
         }).done(function(msg){
             console.log(msg);
