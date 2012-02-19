@@ -2,7 +2,6 @@ var bronies = (function() {
     var self = this;
     var map;
 
-    var getViewerLocation = function() {
     var getViewerLocation = function(maps) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -18,13 +17,26 @@ var bronies = (function() {
 			        icon: dot
 			    });
             }, function() {
-                map.panTo(new google.maps.LatLng(51.1, 10.5));
+                maps.panTo(new google.maps.LatLng(51.1, 10.5));
             });
         }
     }
+    
+    self.changeLocation = function(){
+        var term = document.getElementById('term').value;
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode( { 'address': term}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+              } else {
+                alert("Fehler: " + status);
+              }
+            });
+        return false;
+    }
 
     self.init = function() {
-        var mapCenter = new google.maps.LatLng(0, 0);
+        var geocoder = new google.maps.Geocoder();
         map = new google.maps.Map(document.getElementById('map'), {
             zoom: 6,
             center: new google.maps.LatLng(51.1, 10.5),
@@ -33,7 +45,7 @@ var bronies = (function() {
 
         $.ajax({
     	    type: "GET",
-    		url: "/bronielocator",
+    		url: "/bronielocator.php",
             data: {}
         }).done(function(msg){
             console.log(msg);
@@ -48,7 +60,6 @@ var bronies = (function() {
     		});
         });
 
-        getViewerLocation();
         getViewerLocation(map);
     };
 
