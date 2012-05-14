@@ -62,13 +62,14 @@ var bronies = (function() {
             center: new google.maps.LatLng(51.1, 10.5),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-
+        
+        
+        // Set ponytime marker
         $.ajax({
     	    type: "GET",
     		url: "/bronielocator/",
             data: {}
         }).done(function(msg){
-            console.log(msg);
     		$.each(msg, function(index, value){
     		    var coords = new google.maps.LatLng(value.lat, value.lng)
     		    var marker = new google.maps.Marker({
@@ -77,10 +78,18 @@ var bronies = (function() {
     		        animation: google.maps.Animation.DROP,
     		        title: value.name
     		    });
+    		    google.maps.event.addListener(marker, 'click', function(){
+    		        $("div#list").children("div").each(function() { $(this).removeClass(); });
+                    document.getElementById(index).setAttribute('class', 'marked');
+                });
     		});
         });
-
-        getViewerLocation(map);
+        
+        getViewerLocation();
+        //getPonytimes();
+        
+        google.maps.event.addListener(map, 'zoom_changed', getPonytimes);
+        google.maps.event.addListener(map, 'dragend', getPonytimes);
     };
 
     return self;
