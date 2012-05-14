@@ -2,17 +2,16 @@ var bronies = (function() {
     var self = this;
     var map;
 
-    var getViewerLocation = function(maps) {
+    var getViewerLocation = function() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                maps.panTo(pos);
-			    maps.setZoom(11);
-			    
+                map.panTo(pos);
+			    map.setZoom(11);
 			    var dot = "static/dot.png";
 			    var marker = new google.maps.Marker({
 			        position: pos,
-			        map: maps,
+			        map: map,
 			        title: "Deine Position",
 			        icon: dot
 			    });
@@ -32,7 +31,28 @@ var bronies = (function() {
                 alert("Fehler: " + status);
               }
             });
+        bronies.getPonytimes;
         return false;
+    }
+    
+    self.getPonytimes = function(){
+        var bounds = map.getBounds();
+		$.ajax({
+		  type: "GET",
+		  //url: "/bronielocator/",
+		  url: "/bronielocator/",
+		  data: {
+			swlat: bounds.getSouthWest().lat(),
+			swlng: bounds.getSouthWest().lng(),
+			nelat: bounds.getNorthEast().lat(),
+			nelng: bounds.getNorthEast().lng()
+			}
+		}).done(function(msg){
+		    document.getElementById('list').innerHTML = '';
+		    $.each(msg, function(index, value){
+		        document.getElementById('list').innerHTML += '<div id="' + index + '"><h2>' + value.name + '</h2><b>Webseite:</b> <a href="'+ value.url +'">'+ value.url +'</a></div>';
+		    })
+		});
     }
 
     self.init = function() {
